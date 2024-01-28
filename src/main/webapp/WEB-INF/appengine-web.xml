@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+  <application>striking-ensign-781</application>
+  <version>1</version>
+  <runtime>java17</runtime>
+  <app-engine-apis>true</app-engine-apis>
+
+  <!-- Configure serving/caching of GWT files -->
+  <static-files>
+    <include path="**" />
+      <include path="/**.svg" expiration="30d" />
+      <include path="/**.woff" expiration="30d" />
+      <include path="/**.jpg" expiration="2d" />
+      <include path="/**.png" expiration="36h" />
+
+
+    <!-- The following line requires App Engine 1.3.2 SDK -->
+    <include path="**.nocache.*" expiration="0s" />
+
+    
+    <include path="**.cache.*" expiration="365d" />
+    <exclude path="**.gwt.rpc" />
+    
+    
+  </static-files>
+
+  <!-- Configure java.util.logging -->
+  <system-properties>
+    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+  </system-properties>
+</appengine-web-app>
